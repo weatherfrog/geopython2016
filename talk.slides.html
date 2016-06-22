@@ -11965,7 +11965,7 @@ a.anchor-link {
 
 <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;weather.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="p">[</span><span class="s2">&quot;/temperature/2m&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_2m</span>
-    <span class="n">f</span><span class="p">[</span><span class="s2">&quot;/temperature/2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;celsius&quot;</span>
+
     <span class="n">f</span><span class="p">[</span><span class="s2">&quot;/temperature/2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;desc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;temperature 2m above ground&quot;</span>
 </pre></div>
 
@@ -13224,6 +13224,8 @@ s+M4TmF4YnYcxykMT8yO4ziF4YnZcRynMH4B09LtYN3DCIIAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Advanced-hdf5-features">Advanced hdf5 features<a class="anchor-link" href="#Advanced-hdf5-features">&#182;</a></h1><ul>
 <li>Compression &amp; chunking (affects performance!)</li>
+<li>Portable (takes care of endianness)</li>
+<li>Works with MPI</li>
 <li>Soft and hard links (<code>f['/mygrp/link'] = dset</code>)</li>
 <li>Links to other files</li>
 <li>"Pointers" to "regions of interest" in a dataset</li>
@@ -13365,7 +13367,6 @@ s+M4TmF4YnYcxykMT8yO4ziF4YnZcRynMH4B09LtYN3DCIIAAAAASUVORK5CYII=
 <h1 id="File-format-behind-such-an-API">File format behind such an API<a class="anchor-link" href="#File-format-behind-such-an-API">&#182;</a></h1><ul>
 <li>All time steps of a single day are stored in one dataset <code>YYYYMMDD</code></li>
 <li>Time stored in a 3rd dimension</li>
-<li>A bit-array (<code>00011100...</code>) identifies uninitialized time steps</li>
 </ul>
 <p><img src="geodb.png"/></p>
 
@@ -14660,7 +14661,6 @@ Calls to Hdf5 are <strong>blocking</strong>, i.e., GIL is not released while wai
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you need <strong>parallel read/write</strong>, there are options:</p>
 <ul>
-<li><a href="http://docs.h5py.org/en/latest/mpi.html">hdf5 with MPI</a>: only for "command line" applications</li>
 <li><a href="https://github.com/HDFGroup/h5serv">h5serve</a>: REST server, single-threaded, serializes file access</li>
 <li><a href="https://github.com/meteotest/h5pySWMR">h5pySWMR</a>: drop-in replacement for h5py with efficient "single writer multiple readers" synchronization</li>
 </ul>
