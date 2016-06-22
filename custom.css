@@ -1,0 +1,7 @@
+body {
+    background-color: #ff3322;
+    background: url(./mt_ribbon.svg) no-repeat;
+    border-right: 4px solid transparent;
+    background-size: 7%;
+    background-position: right 6% top 0px;
+}

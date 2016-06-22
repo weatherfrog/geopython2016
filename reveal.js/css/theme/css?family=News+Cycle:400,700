@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 400;
+  src: local('News Cycle'), local('NewsCycle'), url(https://fonts.gstatic.com/s/newscycle/v13/9Xe8dq6pQDsPyVH2D3tMQi3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 700;
+  src: local('News Cycle Bold'), local('NewsCycle-Bold'), url(https://fonts.gstatic.com/s/newscycle/v13/G28Ny31cr5orMqEQy6ljt_Er6Hm6RMS0v1dtXsGir4g.ttf) format('truetype');
+}
