@@ -12001,8 +12001,10 @@ a.anchor-link {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;weather.h5&quot;</span><span class="p">)</span>
+
 <span class="n">grp</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;/temperature&quot;</span><span class="p">]</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;2m&quot;</span><span class="p">]</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">grp</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
@@ -12032,7 +12034,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Datasets are like NumPy arrays "on disk":</p>
+<p>Datasets are like NumPy arrays "on disk". Note that slicing allows to read fragments of a dataset into memory.</p>
 
 </div>
 </div>
@@ -12049,16 +12051,6 @@ a.anchor-link {
 </div>
 </div>
 
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Slicing allows to read fragments of a dataset into memory:</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13247,7 +13239,6 @@ s+M4TmF4YnYcxykMT8yO4ziF4YnZcRynMH4B09LtYN3DCIIAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Performance-comes-at-a-price...">Performance comes at a price...<a class="anchor-link" href="#Performance-comes-at-a-price...">&#182;</a></h1><ul>
-<li>No "out-of-core" computation built-in</li>
 <li>No transactional database features</li>
 <li>Concurrency is non-trivial...</li>
 </ul>
@@ -14669,20 +14660,10 @@ Calls to Hdf5 are <strong>blocking</strong>, i.e., GIL is not released while wai
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you need <strong>parallel read/write</strong>, there are options:</p>
 <ul>
-<li><a href="http://docs.h5py.org/en/latest/mpi.html">Parallel hdf5</a>: uses MPI, useful for parallel computing, not for "backends"</li>
-<li><a href="https://github.com/HDFGroup/h5serv">h5serve</a> REST server: single-threaded, serializes file access</li>
+<li><a href="http://docs.h5py.org/en/latest/mpi.html">hdf5 with MPI</a>: only for "command line" applications</li>
+<li><a href="https://github.com/HDFGroup/h5serv">h5serve</a>: REST server, single-threaded, serializes file access</li>
 <li><a href="https://github.com/meteotest/h5pySWMR">h5pySWMR</a>: drop-in replacement for h5py with efficient "single writer multiple readers" synchronization</li>
 </ul>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Seperate hdf5 data access from your web application!</p>
 
 </div>
 </div>
